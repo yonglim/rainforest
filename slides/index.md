@@ -141,3 +141,31 @@ resources "/registrations", UserController, only: [:create, :new]
 
 # then execute ..
 mix ecto.migrate
+
+---
+
+# change user_controller.ex .. just keep new and create functions..
+#       also change "create" function redirect to product_path(conn, :index)     ... instead of user_path
+
+
+# also delete unnecessary template … /templates … edit / index / show
+
+# edit the new.html.eex .. <h2>Sign Up</h2>  ...  delete the "Back" link line
+# edit the form.html.eex … change label to just password .. also change it to password_input
+
+# conn  .. https://hexdocs.pm/plug/Plug.Conn.html
+# https://elixirforum.com/t/what-is-conn-and-changeset/2392
+# https://devhints.io/phoenix-conn
+
+# add to lines to /lib/rainforest_be/templates/layout/app.html.eex .. to the "main" tag
+<%= link "Home", to: product_path(@conn, :index) %> |
+<%= link "Sign up", to: user_path(@conn, :new) %>
+
+# the above product_path and user_path are path helpers
+# https://hexdocs.pm/phoenix/routing.html#path-helpers
+# https://devhints.io/phoenix-routing
+product_path(@conn, :index) .. equivalent to  .. /products
+user_path(@conn, :new) .. equivalent to  .. /users/new
+
+# goto the product page you can see the 2 links are added
+http://0.0.0.0:4000/products
