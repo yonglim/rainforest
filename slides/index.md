@@ -186,3 +186,12 @@ mix deps.get
 
 # set user_id to the session
 # file :  /lib/rainforest_web/controller/user_controller.ex
+
+---
+
+# create a folder /lib/rainforest_web/helpers
+# create a new file in this folder auth.ex
+
+# since we are going to use this very often, we will include this module in all our views
+# /lib/rainforest_web.ex .. def view section
+import RainforestWeb.Helpers.Auth, only: [signed_in?: 1]

@@ -40,6 +40,7 @@ defmodule RainforestWeb do
       import RainforestWeb.Router.Helpers
       import RainforestWeb.ErrorHelpers
       import RainforestWeb.Gettext
+      import RainforestWeb.Helpers.Auth, only: [signed_in?: 1]
     end
   end
 
