@@ -169,3 +169,14 @@ user_path(@conn, :new) .. equivalent to  .. /users/new
 
 # goto the product page you can see the 2 links are added
 http://0.0.0.0:4000/products
+
+---
+
+# add dependencies in the mix.exs (top level of the directory structure)
+# commonin
+# https://hex.pm/packages/comeonin
+{:comeonin, "~> 4.1.1"},
+{:bcrypt_elixir, "~> 1.0"},
+
+# execute the following in the command line .. to get the new dependencies
+mix deps.get
