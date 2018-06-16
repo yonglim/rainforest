@@ -30,3 +30,10 @@ http://0.0.0.0:4000/
 \dt
 
 ---
+
+# go back to the phoenix terminal
+# exit the server by issuiong the command Ctrl-C twice
+
+# We want to generate a Product model with corresponding files
+
+mix phx.gen.html Warehouse Product products productName:string stock:integer sellingPrice:float
