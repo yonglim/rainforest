@@ -233,3 +233,7 @@ end
 # Then we’ve just got inputs for the username, password, and a “Sign in” button.
 
 ---
+
+# now we want to limit the access to update/delete to only login user
+# need to create a function plug in  /lib/rainforest_web/controllers/products_controller.ex
+# more about function plugs : https://hexdocs.pm/phoenix/plug.html
