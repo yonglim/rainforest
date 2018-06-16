@@ -17,7 +17,8 @@ defmodule RainforestWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
- resources "/products", ProductController
+    resources "/products", ProductController
+    resources "/registrations", UserController, only: [:create, :new]
   end
 
   # Other scopes may use custom stacks.
