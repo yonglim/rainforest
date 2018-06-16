@@ -180,3 +180,6 @@ http://0.0.0.0:4000/products
 
 # execute the following in the command line .. to get the new dependencies
 mix deps.get
+
+# update the user model to encrypt password … lib/rainforest/accounts/user.ex
+# update the changeset

@@ -17,5 +17,6 @@ defmodule Rainforest.Accounts.User do
     |> cast(attrs, [:username, :usertype, :encrypted_password])
     |> validate_required([:username, :usertype, :encrypted_password])
     |> unique_constraint(:username)
+    |> update_change(:encrypted_password, &Bcrypt.hashpwsalt/1)
   end
 end
