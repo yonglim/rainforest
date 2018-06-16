@@ -208,3 +208,28 @@ import RainforestWeb.Helpers.Auth, only: [signed_in?: 1]
 	get "/sign-in", SessionController, :new
 	post "/sign-in", SessionController, :create
 	delete "/sign-out", SessionController, :delete
+
+---
+
+# add View
+# create the sign-in page .. lib/rainforest_web/views/session_view.ex
+defmodule RainforestWeb.UserView do
+  use RainforestWeb, :view
+end
+
+# create a new folder under templates .. lib/rainforest_web/templates/session
+# create a new template under this new folder
+#    lib/rainforest_web/templates/session/new.html.eex
+<h1>Sign in</h1>
+<%= form_for @conn, session_path(@conn, :new), [as: :session], fn f -> %>
+  <%= text_input f, :username, placeholder: "username" %>
+  <%= password_input f, :password, placeholder: "password" %>
+  <%= submit "Sign in" %>
+<% end %>
+
+# First we’re creating our form. And instead of using a changeset, we’re passing in our connection.
+# We’re telling the form to send our data to the create action in our session_controller.ex
+# And then [as: :session] sends our form data here in under key session in our params.
+# Then we’ve just got inputs for the username, password, and a “Sign in” button.
+
+---
