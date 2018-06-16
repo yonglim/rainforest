@@ -57,3 +57,15 @@ http://0.0.0.0:4000/products
 
 # see a listing in the table
 select * from products;
+
+---
+
+# testing
+# all the appropriate CRUD tests are generated
+# execute these tests
+
+mix test
+
+# check the postgres databases
+# you will see that a test database "rainforest_test" is created
+\list
