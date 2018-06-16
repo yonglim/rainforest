@@ -69,3 +69,11 @@ mix test
 # check the postgres databases
 # you will see that a test database "rainforest_test" is created
 \list
+
+---
+
+# Lessons learned (workshop1 part1)
+# easy to create a working webapp with Phoenix / Elixir / Postgres
+# supports Html and Json (abit of that later)
+# can create backing database easily
+# has test framework ready
