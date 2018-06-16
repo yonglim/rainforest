@@ -65,5 +65,18 @@ defmodule Rainforest.WarehouseTest do
       product = product_fixture()
       assert %Ecto.Changeset{} = Warehouse.change_product(product)
     end
+
+    test "update_product/2 with negative stock return error changeset" do
+      product = product_fixture()
+      assert {:error, %Ecto.Changeset{}} = Warehouse.update_product(product, %{stock: -1})
+      assert product == Warehouse.get_product!(product.id)
+    end
+
+    test "update_product/2 with negative selling price return error changeset" do
+      product = product_fixture()
+      assert {:error, %Ecto.Changeset{}} = Warehouse.update_product(product, %{sellingPrice: -0.1})
+      assert product == Warehouse.get_product!(product.id)
+    end
+    
   end
 end

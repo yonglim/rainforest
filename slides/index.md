@@ -77,3 +77,17 @@ mix test
 # supports Html and Json (abit of that later)
 # can create backing database easily
 # has test framework ready
+
+---
+
+### workshop1 part2
+# tests with some coding
+
+# add tests to check for prevent negative stock and sellingPrice
+#    file : /test/rainforest/warehouse_test.exs
+# and execute these tests to see the failures
+mix test
+
+# coding convention
+# ! ?
+https://hexdocs.pm/elixir/naming-conventions.html
