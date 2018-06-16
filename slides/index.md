@@ -183,3 +183,6 @@ mix deps.get
 
 # update the user model to encrypt password … lib/rainforest/accounts/user.ex
 # update the changeset
+
+# set user_id to the session
+# file :  /lib/rainforest_web/controller/user_controller.ex
