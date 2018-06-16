@@ -195,3 +195,16 @@ mix deps.get
 # since we are going to use this very often, we will include this module in all our views
 # /lib/rainforest_web.ex .. def view section
 import RainforestWeb.Helpers.Auth, only: [signed_in?: 1]
+
+---
+
+# add the controller to handle routes for sessions
+# create the new file /lib/rainforest_web/controllers/session_controller.ex
+
+# add function to support get_by_username .. /lib/rainforest/accounts/accounts.ex
+
+# add 3 more routes … /lib/rainforest_web/router.ex
+
+	get "/sign-in", SessionController, :new
+	post "/sign-in", SessionController, :create
+	delete "/sign-out", SessionController, :delete
