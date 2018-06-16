@@ -100,3 +100,32 @@ https://hexdocs.pm/ecto/Ecto.Changeset.html#validate_number/3
 
 # execute the test again
 mix test
+
+---
+
+# before proceeding further, let’s look at the directory structure first
+#
+# /_build - where the code is compiled to .beam files (every much like .class file for Java)
+#             one subdirectory for each environment (/dev, /test)
+#
+# /config - where we setup the environment
+#               look at dev.exs .. it has ports and postgres connection info
+#
+# mix.exs and /deps - configuration and dependencies for phoenix
+#                                 /cowboy (web server)
+#                                 /poolboy (connection pool manager)
+#
+# /lib - our code goes here ..
+#          /lib/<appname> … /lib/rainforest :: our data models .. NOT related to the web request handling
+#          /lib/<appname>_web … /lib/rainforest_web :: related to the web request handling
+#                   /channels - web-sockets
+#                   /views and  /templates - subfolder to generate the display
+#                   /controllers - controls the action of the page ..
+#                   router.ex ..
+
+# lets looks more closely at router.ex … entry point to the web-application
+#        defmodule .. defining a elixir module .. function are within context of modules
+#            RainforestWeb … module name .. always start with capital letter
+#               .Router … dot-notation to create a namespace structure
+#
+# https://hexdocs.pm/phoenix/routing.html
