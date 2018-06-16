@@ -16,5 +16,7 @@ defmodule Rainforest.Warehouse.Product do
     product
     |> cast(attrs, [:productName, :stock, :sellingPrice])
     |> validate_required([:productName, :stock, :sellingPrice])
+    |> validate_number(:stock, greater_than_or_equal_to: 0)
+    |> validate_number(:sellingPrice, greater_than_or_equal_to: 0.0)
   end
 end

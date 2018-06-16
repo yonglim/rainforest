@@ -88,6 +88,15 @@ mix test
 # and execute these tests to see the failures
 mix test
 
-# coding convention
+# naming convention
 # ! ?
 https://hexdocs.pm/elixir/naming-conventions.html
+
+# pass the failing test
+# edit the file lib/rainforest/warehouse/product.ex
+# lets talk about piping
+# Eco.Changeset
+https://hexdocs.pm/ecto/Ecto.Changeset.html#validate_number/3
+
+# execute the test again
+mix test
