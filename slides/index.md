@@ -129,3 +129,15 @@ mix test
 #               .Router … dot-notation to create a namespace structure
 #
 # https://hexdocs.pm/phoenix/routing.html
+
+---
+
+# USer Authentication
+# lets create User model
+mix phx.gen.html Accounts User users username:string:unique usertype:string encrypted_password:string
+
+# add to the following router.ex
+resources "/registrations", UserController, only: [:create, :new]
+
+# then execute ..
+mix ecto.migrate
