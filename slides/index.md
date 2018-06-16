@@ -37,3 +37,23 @@ http://0.0.0.0:4000/
 # We want to generate a Product model with corresponding files
 
 mix phx.gen.html Warehouse Product products productName:string stock:integer sellingPrice:float
+
+
+# open up the Atom editor
+# add a project directory ~/projects/rainforest
+# then add the resource to your browser scope in lib/rainforest_web/router.ex:
+# add the following line within the scope block of RainforestWeb
+    resources "/products", ProductController
+
+# you can now start the server and goto the product page in the browser
+mix phx.server
+http://0.0.0.0:4000/products
+
+# add a few products in the page and now you can also check back at the postgres terminal
+# you should be connected to the rainforest_dev database
+
+# display the table, you should see the product table
+\dt
+
+# see a listing in the table
+select * from products;
