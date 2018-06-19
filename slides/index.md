@@ -237,3 +237,27 @@ end
 # now we want to limit the access to update/delete to only login user
 # need to create a function plug in  /lib/rainforest_web/controllers/products_controller.ex
 # more about function plugs : https://hexdocs.pm/phoenix/plug.html
+
+---
+
+# Elm (workshop 3)
+#
+# FrontEnd asset is in /assets folder
+# lets look at the node package setting /assets/package.json
+# it comes with a front-end build tool called "brunch" (/assets/brunch-config.js)
+
+# setup Phoenix to use Elm
+# execute the following command
+# create a new folder /assets/elm
+
+cd ~/projects/rainforest/assets/
+sudo npm install --unsafe-perm=true --allow-root --save-dev elm elm-brunch
+mkdir elm
+cd elm
+elm-package install
+cd ../..
+
+# the last command create a new file /assets/elm/elm-package.json
+# and add another folder /assets/elm/elm-stuff
+
+---
