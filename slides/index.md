@@ -279,3 +279,21 @@ mix phx.server
 # goto browser http://0.0.0.0:4000/
 # you should see the message from Elm
 # change and save the text from elm .. you shld see that it is live reloading it
+
+---
+
+# Elm Architecture
+# update the Main with Model, Update and view
+
+Main: main
+Model: init
+Update: update
+Subscriptions: subscriptions
+View: view
+
+# lets look more closely at the new Main.elm
+
+# also need to look at the Elm Html package
+http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html
+
+---
