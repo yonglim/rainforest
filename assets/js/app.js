@@ -19,3 +19,8 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+//Elm
+import Elm from "./main"
+const elmContainer = document.querySelector("#elm-container"); 5
+if (elmContainer) Elm.Main.embed(elmContainer);

@@ -261,3 +261,21 @@ cd ../..
 # and add another folder /assets/elm/elm-stuff
 
 ---
+
+
+# setup /assets/brunch-config.js use elmBrunch
+
+# create a new Elm file /assets/elm/Main.elm
+
+# update Phoenix to load the elmContainer
+#   file : /assets/js/apps
+
+# update the index page with the elmContainer div
+#   file :  /lib/rainforest_web/templates/page/index.html.eex
+
+# start the server again
+mix phx.server
+
+# goto browser http://0.0.0.0:4000/
+# you should see the message from Elm
+# change and save the text from elm .. you shld see that it is live reloading it
