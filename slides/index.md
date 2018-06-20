@@ -297,3 +297,19 @@ View: view
 http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html
 
 ---
+
+# Getting data via API
+
+# setup Phoenix to expose the API for product
+# execute the following in the command prompt
+mix phx.gen.json Warehouse Product products productName:string stock:integer sellingPrice:float --web Api --no-context --no-schema
+
+# note that is generation does not generate an Ecto Migrate file (with --no-schema setting)
+
+# after the file generation, you could see that a couple of new folders is created :
+#   new folders :
+#              /lib/rainforest_web/controllers/api
+#              /lib/rainforest_web/views/api
+# also a few new files generarted
+
+---
