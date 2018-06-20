@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (onClick)
+import Http
 
 
 -- Entry point
@@ -9,10 +10,11 @@ import Html.Events exposing (onClick)
 
 main : Program Never Model Msg
 main =
-    beginnerProgram
-        { model = initialModel
+    program
+        { init = init
         , view = view
         , update = update
+        , subscriptions = \_ -> Sub.none
         }
 
 
@@ -21,12 +23,18 @@ main =
 
 
 type alias Model =
-    { value : Int }
+    { dataFromServer : String
+    , errorMessage : Maybe String
+    }
 
 
-initialModel : Model
-initialModel =
-    { value = 0 }
+init : ( Model, Cmd Msg )
+init =
+    ( { dataFromServer = ""
+      , errorMessage = Nothing
+      }
+    , Cmd.none
+    )
 
 
 
@@ -36,35 +44,50 @@ initialModel =
 view : Model -> Html Msg
 view model =
     div []
-        [ span []
-            [ h4 [] [ text "Increment / Decrement button" ]
-            , button [ onClick Decrement ] [ text "-" ]
-            , span [] [ text (toString model.value) ]
-            , button [ onClick Increment ] [ text "-" ]
-            ]
-        , div []
-            [ button [ onClick <| SetValue 0 ] [ text "Reset" ] ]
+        [ button [ onClick SendHttpRequest ]
+            [ text "Get data from server" ]
+        , displayData model
         ]
+
+
+displayData : Model -> Html Msg
+displayData model =
+    case model.errorMessage of
+        Just message ->
+            -- viewError message
+            div []
+                [ h3 [] [ text "Error!" ]
+                , div [] [ text message ]
+                ]
+
+        Nothing ->
+            div []
+                [ h3 [] [ text "List of Products" ]
+                , div [] [ text model.dataFromServer ]
+                ]
+
+
+type Msg
+    = SendHttpRequest
+    | DataReceived (Result Http.Error String)
 
 
 
 -- Update
 
 
-type Msg
-    = Increment
-    | Decrement
-    | SetValue Int
-
-
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increment ->
-            { model | value = model.value + 1 }
+        SendHttpRequest ->
+            ( model, Http.send DataReceived (Http.getString "http://0.0.0.0:4000/api/products/") )
 
-        Decrement ->
-            { model | value = max 0 <| model.value - 1 }
+        DataReceived (Ok data) ->
+            ( { model | dataFromServer = data }, Cmd.none )
 
-        SetValue val ->
-            { model | value = val }
+        DataReceived (Err httpError) ->
+            ( { model
+                | errorMessage = Just "Ooops ... we got problem getting data from the server"
+              }
+            , Cmd.none
+            )

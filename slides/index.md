@@ -333,3 +333,18 @@ http://0.0.0.0:4000/api/products
 
 
 ---
+
+# Elm accessing the API data
+# Elm to get the Http API using Http package
+# http://package.elm-lang.org/packages/elm-lang/http/latest/Http
+# we need to tell Elm to use that package
+# execute the following commands :
+
+cd assets/elm
+elm package install elm-lang/http -y
+cd ../..
+
+# modify the Main.elm to display the data return by the API as just String text
+# quite a lot of typing but after you save the Main.elm, you should be able to retrieve the products as a string text
+
+----
