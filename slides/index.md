@@ -353,3 +353,21 @@ cd ../..
 
 
 ---
+
+
+# We want to get the message now in JSON format
+# need to install the JSON helpers for Elm
+cd ~/projects/rainforest/assets/elm
+elm package install elm-community/json-extra -y
+
+Lets look at Http.get and Http.getString
+http://package.elm-lang.org/packages/elm-lang/http/latest/Http#getString
+
+Http.get : String -> Decoder a -> Request a
+given String url .. and decoder .. return Request
+
+For JSON decode, we need to look at list,
+http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode#list
+
+
+---
