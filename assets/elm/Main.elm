@@ -54,17 +54,30 @@ displayData : Model -> Html Msg
 displayData model =
     case model.errorMessage of
         Just message ->
-            -- viewError message
-            div []
-                [ h3 [] [ text "Error!" ]
-                , div [] [ text message ]
-                ]
+            viewError message
 
         Nothing ->
-            div []
-                [ h3 [] [ text "List of Products" ]
-                , div [] [ text model.dataFromServer ]
-                ]
+            viewdataFromServer model.dataFromServer
+
+
+viewError : String -> Html Msg
+viewError errorMessage =
+    let
+        errorHeading =
+            "Couldn't fetch data at this time."
+    in
+        div []
+            [ h3 [] [ text errorHeading ]
+            , text ("Error msg: " ++ errorMessage)
+            ]
+
+
+viewdataFromServer : String -> Html Msg
+viewdataFromServer dataFromServer =
+    div []
+        [ h3 [] [ text "List of Products" ]
+        , div [] [ text dataFromServer ]
+        ]
 
 
 type Msg
@@ -87,7 +100,26 @@ update msg model =
 
         DataReceived (Err httpError) ->
             ( { model
-                | errorMessage = Just "Ooops ... we got problem getting data from the server"
+                | errorMessage = Just (createErrorMessage httpError)
               }
             , Cmd.none
             )
+
+
+createErrorMessage : Http.Error -> String
+createErrorMessage httpError =
+    case httpError of
+        Http.BadUrl message ->
+            message
+
+        Http.Timeout ->
+            "Server is taking too long to respond. Please try again later."
+
+        Http.NetworkError ->
+            "It appears you don't have an Internet connection right now."
+
+        Http.BadStatus response ->
+            response.status.message
+
+        Http.BadPayload message response ->
+            message

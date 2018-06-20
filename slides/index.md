@@ -348,3 +348,8 @@ cd ../..
 # quite a lot of typing but after you save the Main.elm, you should be able to retrieve the products as a string text
 
 ----
+
+# We want to refactor the code and put in better error messages
+
+
+---
