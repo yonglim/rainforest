@@ -29,4 +29,9 @@ defmodule RainforestWeb.Router do
   # scope "/api", RainforestWeb do
   #   pipe_through :api
   # end
+
+  scope "/api", RainforestWeb.Api do
+    pipe_through(:api)
+    resources("/products", ProductController)
+  end
 end

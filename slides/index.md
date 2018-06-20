@@ -313,3 +313,23 @@ mix phx.gen.json Warehouse Product products productName:string stock:integer sel
 # also a few new files generarted
 
 ---
+
+# We will need to update the file /lib/rainforest_web/router.ex with the recommended settings
+
+    scope "/api", RainforestWeb.Api do
+      pipe_through :api
+      resources "/products", ProductController
+    end
+
+# try starting the server now
+# you will see an error pointing to the file
+#    lib/rainforest_web/controllers/api/product_controller.ex:18: undefined function api_product_path
+#
+# we need to change it to just product_path
+
+# now try starting the server
+# and access the api page :
+http://0.0.0.0:4000/api/products
+
+
+---

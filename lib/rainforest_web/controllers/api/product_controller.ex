@@ -4,7 +4,7 @@ defmodule RainforestWeb.Api.ProductController do
   alias Rainforest.Warehouse
   alias Rainforest.Warehouse.Product
 
-  action_fallback RainforestWeb.FallbackController
+  action_fallback(RainforestWeb.FallbackController)
 
   def index(conn, _params) do
     products = Warehouse.list_products()
@@ -15,7 +15,7 @@ defmodule RainforestWeb.Api.ProductController do
     with {:ok, %Product{} = product} <- Warehouse.create_product(product_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", api_product_path(conn, :show, product))
+      |> put_resp_header("location", product_path(conn, :show, product))
       |> render("show.json", product: product)
     end
   end
@@ -35,6 +35,7 @@ defmodule RainforestWeb.Api.ProductController do
 
   def delete(conn, %{"id" => id}) do
     product = Warehouse.get_product!(id)
+
     with {:ok, %Product{}} <- Warehouse.delete_product(product) do
       send_resp(conn, :no_content, "")
     end
